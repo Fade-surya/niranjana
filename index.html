@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puppi ur companion🐶 - Your Cute Study Companion</title>
+    <meta name="description" content="Your cute companion for productive studying and self-care. Features Pomodoro timer, task management, mood tracking, and more.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;900&family=Pacifico&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Video Theme -->
+    <div id="background-video-container" class="background-video-container">
+        <video id="background-video" autoplay muted loop>
+            <source src="thunderstorm-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        
+        <!-- Video Controls -->
+        <div id="video-controls" class="video-controls">
+            <button id="play-pause-btn" class="control-btn" title="Play/Pause">
+                <i class="fas fa-pause"></i>
+            </button>
+            <button id="mute-btn" class="control-btn" title="Mute/Unmute">
+                <i class="fas fa-volume-up"></i>
+            </button>
+            <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.1" value="0.3">
+        </div>
+    </div>
+
+    <!-- Main Application Container -->
+    <div id="app-container" class="main-container">
+        <!-- Navigation -->
+        <nav id="navigation" class="navigation hidden">
+            <div class="nav-header">
+                <h2>Puppi ur companion🐶</h2>
+                <button id="nav-close-btn" class="nav-close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" data-section="home" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#" data-section="timetable" class="nav-link"><i class="fas fa-calendar"></i> Timetable</a></li>
+                <li><a href="#" data-section="pomodoro" class="nav-link"><i class="fas fa-clock"></i> Pomodoro</a></li>
+                <li><a href="#" data-section="tasks" class="nav-link"><i class="fas fa-list-check"></i> Tasks</a></li>
+                <li><a href="#" data-section="quotes" class="nav-link"><i class="fas fa-heart"></i> Quotes</a></li>
+                <li><a href="#" data-section="selfcare" class="nav-link"><i class="fas fa-spa"></i> Self-Care</a></li>
+                <li><a href="#" data-section="analytics" class="nav-link"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+            </ul>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="hero-section" class="section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Welcome to Puppi ur companion🐶! 
+                        <span class="sparkle">✨</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Your cute companion for productive studying and self-care 💖
+                    </p>
+                    
+                    <div class="daily-affirmation">
+                        <div class="affirmation-card">
+                            <h3>✨ Daily Affirmation</h3>
+                            <p id="daily-affirmation-text">You are capable of amazing things! 🌟</p>
+                        </div>
+                    </div>
+                    
+                    <div class="quick-actions">
+                        <button class="action-btn" data-section="pomodoro">
+                            <i class="fas fa-clock"></i>
+                            <span>Start Studying</span>
+                        </button>
+                        <button class="action-btn" data-section="tasks">
+                            <i class="fas fa-list-check"></i>
+                            <span>My Tasks</span>
+                        </button>
+                        <button class="action-btn" data-section="quotes">
+                            <i class="fas fa-heart"></i>
+                            <span>Get Motivated</span>
+                        </button>
+                        <button class="action-btn" data-section="selfcare">
+                            <i class="fas fa-spa"></i>
+                            <span>Self-Care</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timetable Section -->
+        <section id="timetable-section" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-calendar"></i> My Timetable</h2>
+                <button id="add-schedule-btn" class="primary-btn">
+                    <i class="fas fa-plus"></i> Add Schedule
+                </button>
+            </div>
+            
+            <div class="timetable-container">
+                <div class="timetable-grid">
+                    <div class="time-slots">
+                        <div class="time-slot">9:00 AM</div>
+                        <div class="time-slot">10:00 AM</div>
+                        <div class="time-slot">11:00 AM</div>
+                        <div class="time-slot">12:00 PM</div>
+                        <div class="time-slot">1:00 PM</div>
+                        <div class="time-slot">2:00 PM</div>
+                        <div class="time-slot">3:00 PM</div>
+                        <div class="time-slot">4:00 PM</div>
+                        <div class="time-slot">5:00 PM</div>
+                    </div>
+                    <div class="schedule-items" id="schedule-items">
+                        <!-- Schedule items will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pomodoro Section -->
+        <section id="pomodoro-section" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-clock"></i> Pomodoro Timer</h2>
+                <button id="pomodoro-settings-btn" class="secondary-btn">
+                    <i class="fas fa-cog"></i> Settings
+                </button>
+            </div>
+            
+            <div class="pomodoro-container">
+                <div class="timer-display">
+                    <div class="timer-circle">
+                        <svg class="timer-svg" width="200" height="200">
+                            <circle cx="100" cy="100" r="90" stroke="var(--border)" stroke-width="8" fill="none"/>
+                            <circle id="timer-progress" cx="100" cy="100" r="90" stroke="var(--primary-color)" stroke-width="8" fill="none" stroke-dasharray="565.48" stroke-dashoffset="565.48" transform="rotate(-90 100 100)"/>
+                        </svg>
+                        <div class="timer-text">
+                            <div id="timer-display" class="time">25:00</div>
+                            <div id="timer-status" class="status">Study Time</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timer-controls">
+                    <button id="start-pause-btn" class="timer-btn start">
+                        <i class="fas fa-play"></i> Start
+                    </button>
+                    <button id="reset-btn" class="timer-btn reset">
+                        <i class="fas fa-square"></i> Reset
+                    </button>
+                </div>
+                
+                <div class="session-info">
+                    <div class="session-stats">
+                        <div class="stat">
+                            <span class="stat-number" id="sessions-today">0</span>
+                            <span class="stat-label">Sessions Today</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" id="total-minutes">0</span>
+                            <span class="stat-label">Minutes Today</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" id="current-streak">0</span>
+                            <span class="stat-label">Current Streak</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tasks Section -->
+        <section id="tasks-section" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-list-check"></i> My Tasks</h2>
+                <button id="add-task-btn" class="primary-btn">
+                    <i class="fas fa-plus"></i> Add Task
+                </button>
+            </div>
+            
+            <div class="tasks-container">
+                <div class="task-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="pending">Pending</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                </div>
+                
+                <div id="tasks-list" class="tasks-list">
+                    <!-- Tasks will be added here dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Quotes Section -->
+        <section id="quotes-section" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-heart"></i> Motivational Quotes</h2>
+                <button id="new-quote-btn" class="primary-btn">
+                    <i class="fas fa-refresh"></i> New Quote
+                </button>
+            </div>
+            
+            <div class="quotes-container">
+                <div class="quote-card">
+                    <div class="quote-text" id="current-quote">
+                        "The only way to do great work is to love what you do."
+                    </div>
+                    <div class="quote-author" id="quote-author">
+                        - Steve Jobs
+                    </div>
+                </div>
+                
+                <div class="quote-actions">
+                    <button id="save-quote-btn" class="secondary-btn">
+                        <i class="fas fa-heart"></i> Save Quote
+                    </button>
+                    <button id="share-quote-btn" class="secondary-btn">
+                        <i class="fas fa-share"></i> Share
+                    </button>
+                </div>
+                
+                <div class="saved-quotes">
+                    <h3>Saved Quotes</h3>
+                    <div id="saved-quotes-list" class="saved-quotes-list">
+                        <!-- Saved quotes will appear here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Self-Care Section -->
+        <section id="selfcare-section" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-spa"></i> Self-Care</h2>
+            </div>
+            
+            <div class="selfcare-container">
+                <div class="selfcare-grid">
+                    <div class="selfcare-card">
+                        <h3><i class="fas fa-tint"></i> Water Reminder</h3>
+                        <p>Stay hydrated for better focus!</p>
+                        <div class="water-tracker">
+                            <div class="water-glasses" id="water-glasses">
+                                <!-- Water glasses will be added here -->
+                            </div>
+                            <button id="drink-water-btn" class="primary-btn">💧 Drink Water</button>
+                        </div>
+                    </div>
+                    
+                    <div class="selfcare-card">
+                        <h3><i class="fas fa-smile"></i> Mood Tracker</h3>
+                        <p>How are you feeling today?</p>
+                        <div class="mood-selector">
+                            <button class="mood-btn" data-mood="happy">😊 Happy</button>
+                            <button class="mood-btn" data-mood="neutral">😐 Neutral</button>
+                            <button class="mood-btn" data-mood="sad">😢 Sad</button>
+                            <button class="mood-btn" data-mood="excited">🤩 Excited</button>
+                            <button class="mood-btn" data-mood="tired">😴 Tired</button>
+                        </div>
+                    </div>
+                    
+                    <div class="selfcare-card">
+                        <h3><i class="fas fa-leaf"></i> Breathing Exercise</h3>
+                        <p>Take a moment to breathe and relax</p>
+                        <div class="breathing-exercise">
+                            <div id="breathing-circle" class="breathing-circle">
+                                <span id="breathing-text">Click to start</span>
+                            </div>
+                            <button id="start-breathing-btn" class="primary-btn">Start Breathing</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section id="analytics-section" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-bar"></i> Analytics</h2>
+            </div>
+            
+            <div class="analytics-container">
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h3>Study Sessions</h3>
+                        <div class="chart-container">
+                            <canvas id="sessions-chart" width="300" height="200"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="analytics-card">
+                        <h3>Daily Progress</h3>
+                        <div class="progress-stats">
+                            <div class="progress-item">
+                                <span class="progress-label">Today's Goal</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 65%"></div>
+                                </div>
+                                <span class="progress-percent">65%</span>
+                            </div>
+                            <div class="progress-item">
+                                <span class="progress-label">Weekly Goal</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 40%"></div>
+                                </div>
+                                <span class="progress-percent">40%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analytics-card">
+                        <h3>Achievements</h3>
+                        <div class="achievements-list">
+                            <div class="achievement">
+                                <i class="fas fa-star"></i>
+                                <span>First Pomodoro Session</span>
+                            </div>
+                            <div class="achievement">
+                                <i class="fas fa-fire"></i>
+                                <span>5-Day Streak</span>
+                            </div>
+                            <div class="achievement">
+                                <i class="fas fa-trophy"></i>
+                                <span>Study Master</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Floating Kinder Joy Button -->
+    <div id="kinder-joy-btn" class="kinder-joy-btn">
+        <video autoplay muted loop>
+            <source src="kinderjoy-video.mp4" type="video/mp4">
+        </video>
+        <div class="kinder-joy-overlay">
+            <i class="fas fa-gift"></i>
+        </div>
+    </div>
+
+    <!-- AI Assistant -->
+    <div id="ai-assistant" class="ai-assistant">
+        <button id="ai-toggle-btn" class="ai-toggle-btn">
+            <i class="fas fa-robot"></i>
+        </button>
+        
+        <div id="ai-chat-window" class="ai-chat-window hidden">
+            <div class="ai-header">
+                <h3><i class="fas fa-robot"></i> Puppi ur companion🐶</h3>
+                <button id="ai-close-btn" class="ai-close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div id="ai-messages" class="ai-messages">
+                <!-- Messages will be added here -->
+            </div>
+            
+            <div class="ai-input-container">
+                <input type="text" id="ai-input" placeholder="Type your message..." maxlength="500">
+                <button id="ai-send-btn" class="ai-send-btn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="floating-action-btn">
+        <button id="menu-toggle-btn" class="fab-btn" title="Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Modals and Dialogs -->
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div id="modal-content" class="modal-content">
+            <!-- Modal content will be inserted here -->
+        </div>
+    </div>
+
+    <!-- Audio elements -->
+    <audio id="notification-sound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmcdBjqB0fLSfS4EKYzN8dWJOQcZZ73w8qFSDAp5rNW8fCkGHqXf9MZqHgI" type="audio/wav">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
